@@ -1,0 +1,115 @@
+import { useEffect } from "react";
+
+import { Container } from "react-bootstrap";
+import { BrowserRouter as Router, Routes, Route } from "react-router";
+
+import Product from "./components/products/Product";
+import Products from "./components/products/Products";
+import ProdList from "./pages/cms_specific/ProdList";
+import UpdateProduct from "./components/products/UpdateProduct";
+import CMSNav from "./cms_components/CMSNav";
+import ForgotPassword from "./pages/password-forgot/ForgotPassword";
+import Home from "./pages/home/Home";
+import CreateProduct from './pages/cms_specific/CreateProduct'
+import Login from "./pages/login/Login";
+import Logout from "./pages/logout/Logout";
+import Navigation from "./components/Navigation";
+import SearchResults from "./pages/search-page/SearchResults";
+import NotFound from "./components/NotFound";
+import Signup from "./pages/signup/Signup";
+import UpdateProfile from "./pages/update-profile/UpdateProfile";
+import Cart from "./components/cart/Cart";
+
+import { useCreate } from "./contexts/CreateContext.tsx";
+import { useAuth } from "./contexts/AuthContext.tsx";
+import { MobileContextProvider } from "./contexts/MobileContext.tsx";
+
+import "./assets/scss/app.scss";
+
+const App = () => {
+	const { productCategories, setGlobalCategories, cartShowing } = useCreate();
+	const { admin } = useAuth();
+
+
+	useEffect(() => {
+		const getProds = async () => {
+			setGlobalCategories([
+				{ name: "t-shirts" },
+				{ name: "troussers" },
+				{ name: "jackets" },
+			]);
+		};
+
+		getProds();
+	}, []);
+
+
+
+	return (
+		<Router>
+			<div id='main-div'>
+				<MobileContextProvider>
+					{!admin && <Navigation />}
+					<Container
+						id='container'
+						style={
+							admin
+								? {
+									maxWidth: '100vw',
+									minWidth: '100vw',
+									width: '100vw',
+									margin: '0'
+								}
+								: { width: "100%", backgroundColor: 'white' }
+						}
+						className='p-0'
+					>
+						{admin && <CMSNav />}
+						<Routes>
+							<Route path='/' element={<Home />} />
+							<Route path={admin ? "cms/*" : "/*"}>
+								<Route path='index' element={<Home />} />
+								<Route path='search-results' element={<SearchResults />} />
+								<Route path={"products/*"}>
+									{admin && <Route path={"prod-list"} element={<ProdList />} />}
+									{productCategories &&
+										productCategories.map((category, i) => (
+											<>
+												<Route
+													path={`${category.name}`}
+													key={category.name}
+													element={<Products onLoad={(e) => { e.target.scrollIntoView() }} key='products' type={`${category.name}`} />}
+												/>
+												<Route
+													path={`${category.name}/:productId`}
+													key={`${category.name}/:productId`}
+													element={<Product onLoad={(e) => { e.target.scrollIntoView() }} key='single-prod' />}
+												/>
+												{admin && (
+													<Route
+														key={category.name + "-update"}
+														path={`update`}
+														element={<UpdateProduct key='updateProd' />}
+													/>)
+												}
+											</>
+										))}
+								</Route>
+								{admin && (<Route key={"create"} path={`create`} element={<CreateProduct key='createProd' />}></Route>)}
+								<Route path='forgot-password' element={<ForgotPassword />} />
+								<Route path='login' element={<Login />} />
+								<Route path='logout' element={<Logout />} />
+								<Route path='signup' element={<Signup />} />
+								<Route path='update-profile' element={<UpdateProfile />} />
+								<Route path='*' element={<NotFound />} />
+							</Route>
+						</Routes>
+						{!admin && cartShowing ? <Cart /> : null}
+					</Container>
+				</MobileContextProvider>
+			</div>
+		</Router >
+	);
+};
+
+export default App;
