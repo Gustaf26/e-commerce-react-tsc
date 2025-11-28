@@ -1,4 +1,6 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import React, { useEffect, useState, } from "react";
+
+import { useAuth, AuthContext } from "../hooks/useAuth";
 
 import { BounceLoader } from "react-spinners";
 
@@ -6,13 +8,16 @@ import { BounceLoader } from "react-spinners";
 
 type User = { uid: string, email: string, displayName: string } | null
 
-const AuthContext = createContext();
+// const AuthContext = createContext({} as React.Context<{
+//   Provider: React.FC, Consumer: React.FC, $$typeof: typeof AuthContext['Provider']
+//     | typeof AuthContext['Consumer']
+// }>);
 
-const useAuth = () => {
-  return useContext(AuthContext);
-};
+// const useAuth = () => {
+//   return useContext(AuthContext);
+// };
 
-const AuthContextProvider = (props) => {
+const AuthContextProvider: React.FC = (props: { children: React.ReactNode }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(false);
   const [admin, setAdmin] = useState(false);
@@ -144,6 +149,9 @@ const AuthContextProvider = (props) => {
 
 
   const contextValues = {
+    provider: AuthContext.Provider,
+    consumer: AuthContext.Consumer,
+    $$typeof: AuthContext['$$typeof'],
     currentUser,
     loading,
     admin,
