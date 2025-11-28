@@ -4,15 +4,7 @@ import { BounceLoader } from "react-spinners";
 
 // Firebase Functions
 
-// import {
-//   signInWithEmailAndPassword,
-//   createUserWithEmailAndPassword,
-//   signOut
-// } from "firebase/auth";
-
-// import { getAuth } from '../firebase/index'
-
-// const auth = getAuth() // To be used with firebase
+type User = { uid: string, email: string, displayName: string } | null
 
 const AuthContext = createContext();
 
@@ -48,7 +40,7 @@ const AuthContextProvider = (props) => {
 
     if (email === 'admin@email.se' && password === 'adminPass') {
       setLoading(false);
-      let user = { email: 'admin@email.se', displayName: 'Peter Halldorf' }
+      const user: User = { email: email, displayName: 'Peter Halldorf', uid: '' }
       setCurrentUser(user);
       localStorage.setItem('currentUser', JSON.stringify(user))
       return user
@@ -60,7 +52,7 @@ const AuthContextProvider = (props) => {
 
   };
 
-  const logout = (email) => {
+  const logout = () => {
 
     // THIS ONE FOR FIREBASE USE
     // await signOut(auth, email).then((res) => {
@@ -101,9 +93,9 @@ const AuthContextProvider = (props) => {
   //     });
   // };
 
-  const updateProfileData = async (email, password, display_name) => {
+  const updateProfileData = async (email: string, password: string, display_name: string) => {
 
-    let message = await fetch('http://127.0.0.1:8000/auth/update-user', {
+    const message: Promise<{ msg: string, error: string }> = await fetch('http://127.0.0.1:8000/auth/update-user', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -117,14 +109,13 @@ const AuthContextProvider = (props) => {
         }
         return { msg: res.msg, error: res.error }
       })
-      .finally(res => { return res })
       .catch(err => err)
 
     if (message) return message
   };
 
 
-  const checkIfAdmin = (email) => {
+  const checkIfAdmin = (email: string | null) => {
     if (email.trim() === "admin@email.se") {
       setAdmin(true);
       return true;
@@ -138,20 +129,15 @@ const AuthContextProvider = (props) => {
   // This effect is responsible for keeping the "session" in the browser for the user
   useEffect(() => {
 
-    let user;
-
     const checkIfLoggedIn = () => {
       if (localStorage.getItem('currentUser')) {
-        let currentU = JSON.parse(localStorage.getItem('currentUser'))
-        return currentU
+        const currentU = JSON.parse(localStorage.getItem('currentUser'))
+        setCurrentUser(currentU)
+        checkIfAdmin(currentU.email)
       }
     }
 
-    user = checkIfLoggedIn()
-    if (user) {
-      setCurrentUser(user);
-      checkIfAdmin(user.email)
-    }
+    checkIfLoggedIn()
 
   }, []);
 
