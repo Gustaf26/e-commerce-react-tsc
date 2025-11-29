@@ -8,7 +8,7 @@ import Icon from '@mui/material/Icon';
 import MobileList from '../../cms_components/MobileList'
 import { productReducer } from '../../hooks/handleProduct'
 
-import { useAuth } from "../../contexts/AuthContext";
+import { useAuth } from "../../hooks/useAuth";
 import { useCreate } from "../../contexts/CreateContext";
 import { useMobile } from "../../contexts/MobileContext";
 

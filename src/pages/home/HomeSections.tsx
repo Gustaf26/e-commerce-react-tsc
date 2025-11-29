@@ -5,7 +5,7 @@ import verkstadImg from '../../assets/images/verkstad.jpg'
 
 import { useCreate } from "../../contexts/CreateContext"
 import { useMobile } from '../../contexts/MobileContext';
-import { useAuth } from '../../contexts/AuthContext';
+import { useAuth } from '../../hooks/useAuth';
 
 import useMobileStyles from '../../hooks/useMobileStyles';
 

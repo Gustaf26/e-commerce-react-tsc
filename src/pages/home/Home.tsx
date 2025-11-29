@@ -8,7 +8,7 @@ import Navigation from "../../components/Navigation";
 
 //Contexts
 import { useMobile } from "../../contexts/MobileContext";
-import { useAuth } from "../../contexts/AuthContext";
+import { useAuth } from "../../hooks/useAuth";
 import { useCreate } from "../../contexts/CreateContext";
 
 // Hooks

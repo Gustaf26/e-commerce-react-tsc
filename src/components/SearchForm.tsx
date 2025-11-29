@@ -8,7 +8,7 @@ import {
 
 import CartIcon from "./cart/CartIcon";
 
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 import { useMobile } from "../contexts/MobileContext";
 import { useCreate } from "../contexts/CreateContext";
 import useMobileStyles from '../hooks/useMobileStyles'

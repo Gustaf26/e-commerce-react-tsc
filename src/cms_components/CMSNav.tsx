@@ -13,7 +13,7 @@ import MenuContent from './menu/MenuContent';
 // import CardAlert from './menu/CardAlert';
 import OptionsMenu from './menu/OptionsMenu';
 
-import { useAuth } from '../contexts/AuthContext'
+import { useAuth } from '../hooks/useAuth'
 import { useMobile } from '../contexts/MobileContext'
 
 import useMobileStyles from '../hooks/useMobileStyles';

@@ -4,7 +4,7 @@ import { Breadcrumb } from "react-bootstrap";
 import { Link, useLocation } from "react-router";
 
 import { useCreate } from "../contexts/CreateContext";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 import { useMobile } from "../contexts/MobileContext";
 
 import ArrowBack from "@mui/icons-material/ArrowBack";

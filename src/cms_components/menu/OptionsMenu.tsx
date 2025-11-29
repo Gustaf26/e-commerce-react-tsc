@@ -13,7 +13,7 @@ import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 
 import MenuButton from './MenuButton';
 
-import { useAuth } from '../../contexts/AuthContext'
+import { useAuth } from '../../hooks/useAuth'
 import { useMobile } from '../../contexts/MobileContext';
 
 import { useNavigate } from "react-router";

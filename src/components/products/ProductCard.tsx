@@ -4,7 +4,7 @@ import { useNavigate, useLocation, useParams } from "react-router";
 
 import { Card, CardFooter, Form, Alert } from "react-bootstrap";
 
-import { useAuth } from "../../contexts/AuthContext";
+import { useAuth } from "../../hooks/useAuth";
 import { useCreate } from "../../contexts/CreateContext";
 import { useMobile } from "../../contexts/MobileContext";
 

@@ -21,7 +21,7 @@ import UpdateProfile from "./pages/update-profile/UpdateProfile";
 import Cart from "./components/cart/Cart";
 
 import { useCreate } from "./contexts/CreateContext.tsx";
-import { useAuth } from "./contexts/AuthContext.tsx";
+import { useAuth } from "./hooks/useAuth.ts";
 import { MobileContextProvider } from "./contexts/MobileContext.tsx";
 
 import "./assets/scss/app.scss";

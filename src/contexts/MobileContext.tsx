@@ -1,5 +1,15 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { useAuth } from "./AuthContext";
+import { useAuth } from "../hooks/useAuth";
+
+
+
+// export interface MobileContextProps {
+//     Provider: React.FC,
+//     Consumer: React.FC,
+//     children: React.ReactNode,
+//     admin: boolean
+// }
+
 
 
 const MobileContext = createContext();

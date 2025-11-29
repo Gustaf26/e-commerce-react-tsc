@@ -9,7 +9,7 @@ import {
   NavItem
 } from "react-bootstrap";
 
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 import { useCreate } from "../contexts/CreateContext";
 import { useMobile } from '../contexts/MobileContext'
 

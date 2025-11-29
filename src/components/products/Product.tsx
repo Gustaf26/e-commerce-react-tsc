@@ -11,7 +11,7 @@ import BreadCrumbContainer from "../BreadCrumbContainer";
 
 import { useCreate } from "../../contexts/CreateContext";
 import { useMobile } from '../../contexts/MobileContext'
-import { useAuth } from "../../contexts/AuthContext";
+import { useAuth } from "../../hooks/useAuth";
 
 import "../../assets/scss/app.scss";
 import Icon from '@mui/material/Icon';

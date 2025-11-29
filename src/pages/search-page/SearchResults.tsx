@@ -12,7 +12,7 @@ import ProductCard from "../../components/products/ProductCard";
 
 
 import { useCreate } from "../../contexts/CreateContext";
-import { useAuth } from "../../contexts/AuthContext";
+import { useAuth } from "../../hooks/useAuth";
 import { useMobile } from "../../contexts/MobileContext";
 
 import useMobileStyles from '../../hooks/useMobileStyles'

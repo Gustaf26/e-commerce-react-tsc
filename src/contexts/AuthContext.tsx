@@ -1,23 +1,14 @@
-import React, { useEffect, useState, } from "react";
+import React, { useEffect, useState } from "react";
 
-import { useAuth, AuthContext } from "../hooks/useAuth";
+import { AuthContext } from "../hooks/useAuth";
 
 import { BounceLoader } from "react-spinners";
 
 // Firebase Functions
 
-type User = { uid: string, email: string, displayName: string } | null
+type User = { uid: string, email: string, display_name: string } | null
 
-// const AuthContext = createContext({} as React.Context<{
-//   Provider: React.FC, Consumer: React.FC, $$typeof: typeof AuthContext['Provider']
-//     | typeof AuthContext['Consumer']
-// }>);
-
-// const useAuth = () => {
-//   return useContext(AuthContext);
-// };
-
-const AuthContextProvider: React.FC = (props: { children: React.ReactNode }) => {
+const AuthContextProvider: React.FC<{ children: React.ReactNode }> = (props: { children: React.ReactNode }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(false);
   const [admin, setAdmin] = useState(false);
@@ -45,7 +36,7 @@ const AuthContextProvider: React.FC = (props: { children: React.ReactNode }) => 
 
     if (email === 'admin@email.se' && password === 'adminPass') {
       setLoading(false);
-      const user: User = { email: email, displayName: 'Peter Halldorf', uid: '' }
+      const user: User = { email: email, display_name: 'Peter Halldorf', uid: '' }
       setCurrentUser(user);
       localStorage.setItem('currentUser', JSON.stringify(user))
       return user
@@ -149,16 +140,15 @@ const AuthContextProvider: React.FC = (props: { children: React.ReactNode }) => 
 
 
   const contextValues = {
-    provider: AuthContext.Provider,
-    consumer: AuthContext.Consumer,
-    $$typeof: AuthContext['$$typeof'],
+    Provider: AuthContext.Provider,
+    Consumer: AuthContext.Consumer,
     currentUser,
+    children: props.children as React.ReactNode,
     loading,
     admin,
     login,
     logout,
     setAdmin,
-    // signup,
     updateProfileData,
     checkIfAdmin,
     setCurrentUser
@@ -176,4 +166,4 @@ const AuthContextProvider: React.FC = (props: { children: React.ReactNode }) => 
   );
 };
 
-export { useAuth, AuthContextProvider as default };
+export { AuthContextProvider as default };
