@@ -8,9 +8,9 @@ import {
 
 import CartIcon from "./cart/CartIcon";
 
-import { useAuth } from "../hooks/useAuth";
+import { useAuth } from "../contexts/useAuth";
 import { useMobile } from "../contexts/MobileContext";
-import { useCreate } from "../contexts/CreateContext";
+import { useCreate } from "../contexts/useCreate";
 import useMobileStyles from '../hooks/useMobileStyles'
 
 

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Row, Col, Card } from "react-bootstrap";
 import { useNavigate } from "react-router";
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "../../contexts/useAuth";
 
 const Logout = () => {
   const { currentUser, admin } = useAuth();

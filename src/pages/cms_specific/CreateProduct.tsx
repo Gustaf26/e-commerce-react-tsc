@@ -8,8 +8,8 @@ import Icon from '@mui/material/Icon';
 import MobileList from '../../cms_components/MobileList'
 import { productReducer } from '../../hooks/handleProduct'
 
-import { useAuth } from "../../hooks/useAuth";
-import { useCreate } from "../../contexts/CreateContext";
+import { useAuth } from "../../contexts/useAuth";
+import { useCreate } from "../../contexts/useCreate";
 import { useMobile } from "../../contexts/MobileContext";
 
 import useMobileStyles from "../../hooks/useMobileStyles";

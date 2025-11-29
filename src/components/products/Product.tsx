@@ -9,9 +9,9 @@ import ProductCard from './ProductCard'
 import CardContainer from './CardContainer'
 import BreadCrumbContainer from "../BreadCrumbContainer";
 
-import { useCreate } from "../../contexts/CreateContext";
+import { useCreate } from "../../contexts/useCreate";
 import { useMobile } from '../../contexts/MobileContext'
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "../../contexts/useAuth";
 
 import "../../assets/scss/app.scss";
 import Icon from '@mui/material/Icon';

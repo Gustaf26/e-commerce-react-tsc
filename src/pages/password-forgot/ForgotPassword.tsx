@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import { Row, Col, Form, Button, Card, Alert } from 'react-bootstrap'
 import { Link } from 'react-router'
-import { useAuth } from '../../hooks/useAuth'
+import { useAuth } from '../../contexts/useAuth'
 
 const ForgotPassword = () => {
 	const emailRef = useRef()

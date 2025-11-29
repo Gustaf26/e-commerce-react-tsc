@@ -20,8 +20,8 @@ import Signup from "./pages/signup/Signup";
 import UpdateProfile from "./pages/update-profile/UpdateProfile";
 import Cart from "./components/cart/Cart";
 
-import { useCreate } from "./contexts/CreateContext.tsx";
-import { useAuth } from "./hooks/useAuth.ts";
+import { useCreate } from "./contexts/useCreate";
+import { useAuth } from "./contexts/useAuth.ts";
 import { MobileContextProvider } from "./contexts/MobileContext.tsx";
 
 import "./assets/scss/app.scss";

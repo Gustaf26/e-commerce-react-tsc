@@ -11,8 +11,8 @@ import BreadcrumbContainer from "../../components/BreadCrumbContainer";
 import ProductCard from "../../components/products/ProductCard";
 
 
-import { useCreate } from "../../contexts/CreateContext";
-import { useAuth } from "../../hooks/useAuth";
+import { useCreate } from "../../contexts/useCreate";
+import { useAuth } from "../../contexts/useAuth";
 import { useMobile } from "../../contexts/MobileContext";
 
 import useMobileStyles from '../../hooks/useMobileStyles'

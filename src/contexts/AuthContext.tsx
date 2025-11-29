@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { AuthContext } from "../hooks/useAuth";
+import { AuthContext } from "./useAuth";
 
 import { BounceLoader } from "react-spinners";
 
@@ -151,7 +151,8 @@ const AuthContextProvider: React.FC<{ children: React.ReactNode }> = (props: { c
     setAdmin,
     updateProfileData,
     checkIfAdmin,
-    setCurrentUser
+    setCurrentUser,
+    // signup
   };
 
   return (

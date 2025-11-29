@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import ProductsGrid from "./ProductsGrid";
 
-import { useCreate } from "../../contexts/CreateContext";
+import { useCreate } from "../../contexts/useCreate";
 
 const Products = ({ type }) => {
 

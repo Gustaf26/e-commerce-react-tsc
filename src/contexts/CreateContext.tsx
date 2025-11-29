@@ -1,16 +1,23 @@
 
-import { createContext, useContext, useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { CreateContext } from "./useCreate";
+
 import { BounceLoader } from "react-spinners";
 import { db } from '../firebase/index'
 import { collection, getDocs } from "firebase/firestore";
 
-const CreateContext = createContext();
+// type Product = {
+//   id: string,
+//   name: string,
+//   price: number,
+//   thumbnail: string,
+//   category: string,
+//   description: string,
+//   attLink: string,
+//   attribution: string
+// }
 
-const useCreate = () => {
-  return useContext(CreateContext);
-};
-
-const CreateContextProvider = (props) => {
+const CreateContextProvider: React.FC<{ children: React.ReactNode }> = (props: { children: React.ReactNode }) => {
   const [imageUrl, setImageUrl] = useState("");
   const [loading, setLoading] = useState(false);
   const [productOption, setProductOption] = useState(null);
@@ -32,20 +39,23 @@ const CreateContextProvider = (props) => {
 
   useEffect(() => {
 
-    let categories = ['t-shirts', 'troussers', 'jackets']
+    const categories: string[] = ['t-shirts', 'troussers', 'jackets']
 
     categories.forEach(cat => {
 
-      const getData = new Promise((resolve, reject) => {
+      const getData = () => new Promise((resolve, reject) => {
         resolve(getDocs(collection(db, cat)))
       })
 
 
-      getData
-        .then(res => res.forEach((doc) => {
-          if (!emptyArr.includes(doc.data())) emptyArr.push({ ...doc.data(), qty: 0 })
-        }))
-        .then(res => setProducts(emptyArr))
+      getData.apply(this)
+        .then(res => {
+          res.forEach((doc) => {
+            if (!emptyArr.includes(doc.data())) emptyArr.push({ ...doc.data(), qty: 0 })
+          })
+          setProducts(emptyArr)
+        }
+        )
         .catch(err => console.log(err))
     })
 
@@ -79,7 +89,7 @@ const CreateContextProvider = (props) => {
     setSearchResults([]);
 
     if (allProducts.length > 0 && searchString) {
-      let prodsDummy = []
+      const prodsDummy = []
       allProducts.forEach((product) => {
         if (
           (product.name.includes(searchString.toLowerCase())) ||
@@ -105,6 +115,9 @@ const CreateContextProvider = (props) => {
   }, [location])
 
   const contextValues = {
+    Provider: CreateContext.Provider,
+    Consumer: CreateContext.Consumer,
+    children: props.children as React.ReactNode,
     setImageUrl,
     imageUrl,
     setProductOption,
@@ -125,7 +138,8 @@ const CreateContextProvider = (props) => {
     yScrolling,
     loading,
     cartShowing,
-    setCartShowing
+    setCartShowing,
+    prodId
   };
 
 
@@ -141,4 +155,4 @@ const CreateContextProvider = (props) => {
   );
 };
 
-export { CreateContext, useCreate, CreateContextProvider as default };
+export { CreateContext, CreateContextProvider as default };

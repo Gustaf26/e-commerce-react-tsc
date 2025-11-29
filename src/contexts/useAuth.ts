@@ -12,7 +12,7 @@ export interface AuthContextProps {
     login: (email: string, password: string) => { email: string, uid: string, display_name: string },
     checkIfAdmin: (email: string | null) => boolean,
     updateProfileData: (email: string, password: string, display_name: string) => Promise<{ msg: string, error: string }>,
-    signup: (email: string, password: string) => Promise<{ msg: string, error: string }>
+    // signup: (email: string, password: string) => Promise<{ msg: string, error: string }>
 }
 
 export const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);

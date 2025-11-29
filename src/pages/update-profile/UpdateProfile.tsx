@@ -10,7 +10,7 @@ import HomeIcon from '@mui/icons-material/Home';
 
 import Navigation from '../../components/Navigation'
 
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "../../contexts/useAuth";
 import { useMobile } from "../../contexts/MobileContext";
 
 import MobileList from '../../cms_components/MobileList'
