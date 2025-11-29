@@ -25,7 +25,7 @@ const ProdList = () => {
     const { microMobile } = useMobileStyles()
 
     const deleteProd = (product) => {
-        let otherProds = allProducts.filter(prod => prod.id !== product.id)
+        const otherProds = allProducts.filter(prod => prod.id !== product.id)
         setProducts(otherProds)
     }
 

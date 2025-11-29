@@ -37,7 +37,7 @@ const Home = () => {
 
   const toggleMobileDisplays = (e) => {
 
-    let { id } = e.target
+    const { id } = e.target
 
     if (id === "dummy-container-home") { setMobileDisplays(false); return }
     else if (id === 'icon-mobile-displays') setMobileDisplays(!mobileDisplays);
@@ -57,7 +57,7 @@ const Home = () => {
       <div
         id='dummy-container-home'
         className={microMobile ? 'micromobile' : admin && mobile ? 'admin mobile' : admin ? 'admin' : mobile ? 'mobile' : ''}
-        onClick={(e) => { admin && mobile && toggleMobileDisplays(e) }}
+        onClick={(e) => admin && mobile && toggleMobileDisplays(e)}
       >
         <Row
           id='home-row'

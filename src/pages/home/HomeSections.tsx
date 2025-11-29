@@ -35,7 +35,7 @@ function HomeSections() {
 
     const showCheapest = () => {
 
-        let cheapestProducts = allProducts.filter(prod => prod.price < 20)
+        const cheapestProducts = allProducts.filter(prod => prod.price < 20)
         setSearchResults(cheapestProducts)
 
         navigate(admin ? `/cms/search-results` : `/search-results`, { replace: true })

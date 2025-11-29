@@ -66,7 +66,7 @@ const UpdateProduct = () => {
     // FOR REAL DATABASE UPDATE USE:
     // await setDoc(doc(db, productOption, singleProduct.id.toString()), updatedProduct)
 
-    let otherProducts = allProducts.filter(prod => prod.id !== state.id)
+    const otherProducts = allProducts.filter(prod => prod.id !== state.id)
 
     otherProducts.push(state)
 
@@ -86,7 +86,7 @@ const UpdateProduct = () => {
       localStorage.setItem('singleProduct', JSON.stringify(singleProduct))
     }
 
-    let product = !singleProduct ? JSON.parse(localStorage.getItem('singleProduct')) : singleProduct
+    const product = !singleProduct ? JSON.parse(localStorage.getItem('singleProduct')) : singleProduct
 
     // Updating singleProduct && setting initial value to singleproduct reducer when reloading page
     if (product !== singleProduct) { setSingleProduct(product); dispatch({ singleProduct: product }) }

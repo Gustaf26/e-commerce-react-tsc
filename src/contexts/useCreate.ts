@@ -36,6 +36,7 @@ export type CreateContextProps = {
     loading: boolean;
     cartShowing: boolean;
     setCartShowing: React.Dispatch<React.SetStateAction<boolean>>;
+    setProducts: React.Dispatch<React.SetStateAction<Product[]>>;
 }
 
 

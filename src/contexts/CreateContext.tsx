@@ -6,17 +6,6 @@ import { BounceLoader } from "react-spinners";
 import { db } from '../firebase/index'
 import { collection, getDocs } from "firebase/firestore";
 
-// type Product = {
-//   id: string,
-//   name: string,
-//   price: number,
-//   thumbnail: string,
-//   category: string,
-//   description: string,
-//   attLink: string,
-//   attribution: string
-// }
-
 const CreateContextProvider: React.FC<{ children: React.ReactNode }> = (props: { children: React.ReactNode }) => {
   const [imageUrl, setImageUrl] = useState("");
   const [loading, setLoading] = useState(false);

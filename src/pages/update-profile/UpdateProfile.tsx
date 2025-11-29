@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from 'react-router'
 
-import { Row, Col, Form, Button, Card, Alert } from "react-bootstrap";
+import { Row, Form, Button, Card, Alert } from "react-bootstrap";
 
 import Icon from '@mui/material/Icon';
 import { Breadcrumb } from "react-bootstrap";
@@ -34,17 +34,17 @@ const UpdateProfile = () => {
     // disable update-button while updating is in progress
     setLoading(true);
 
-    let name = e.target[0].value
-    let mail = e.target[1].value
-    let password1 = e.target[2].value
-    let password2 = e.target[3].value
+    const name: string = e.target[0].value
+    const mail: string = e.target[1].value
+    const password1: string = e.target[2].value
+    const password2: string = e.target[3].value
 
     if (password1 !== password2) {
       setError('Passwords don´t match')
       return
     }
 
-    setCurrentUser({ displayName: name, email: mail })
+    setCurrentUser({ display_name: name, email: mail, uid: currentUser.uid })
 
     setMessage('User successfully updated. You are being redirected')
 
@@ -83,13 +83,13 @@ const UpdateProfile = () => {
           {mobileDisplays && <MobileList />}
 
           <Card onClick={() => {
-            mobileDisplays && setMobileDisplays(!mobileDisplays);
+            if (mobileDisplays) setMobileDisplays(!mobileDisplays);
             if ((window.innerWidth < 1100 || mobile) && menuShowing) setMenuShowing(false);
           }} id="update-profile-form" className={microMobile ? 'micromobile' :
             admin && mobile ? 'admin mobile' :
               admin ? 'admin' : mobile ? 'mobile' : ''}>
 
-            <Card.Body style={mobile & admin ? { width: '100%' } : {}}>
+            <Card.Body style={mobile && admin ? { width: '100%' } : {}}>
               <Card.Title>Update Profile</Card.Title>
 
               {error && <Alert variant="danger">{error}</Alert>}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 
-import { Row, Card } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import Icon from '@mui/material/Icon';
 
 import Navigation from '../../components/Navigation'

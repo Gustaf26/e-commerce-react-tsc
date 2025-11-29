@@ -44,7 +44,7 @@ const SearchForm = () => {
             style={mobile && admin ? {
                 width: '90%', textAlign: 'center', margin: '0', padding: '20px 0px', height: '100%',
             } : mobile ? { width: '90%', maxWidth: '400px' } : { width: '500px' }}>
-            <Form style={mobile & admin ? {
+            <Form style={mobile && admin ? {
                 width: microMobile ? '100%' : '100%', textAlign: 'center', padding: '15px', display: 'flex', alignItems: 'center',
                 margin: '0', height: '100%'
             } : mobile ? { width: '90%' } : { width: '400px' }} onSubmit={omitReload}>

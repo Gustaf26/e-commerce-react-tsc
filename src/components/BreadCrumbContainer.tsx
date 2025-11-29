@@ -23,8 +23,8 @@ export default function BreadCrumbContainer({ qty }) {
 		if (location.pathname.lastIndexOf("/") === location.pathname.length - 1) {
 			location.pathname = location.pathname.slice(0, location.pathname.length - 1);
 		}
-		let lastDash = location.pathname.lastIndexOf("/");
-		let lastChar = location.pathname.length;
+		const lastDash = location.pathname.lastIndexOf("/");
+		const lastChar = location.pathname.length;
 		let subcategory = location.pathname.slice(lastDash + 1, lastChar);
 		let overcategory = location.pathname.replace(`/${subcategory}`, "");
 		overcategory = overcategory.slice(
