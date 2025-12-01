@@ -88,7 +88,9 @@ const CreateProduct = () => {
 
   useEffect(() => {
     setProductOption('t-shirts')
-    setSingleProduct('');
+    setSingleProduct(null);
+    handleProduct({ type: 'prod-category', category: 't-shirts' })
+    handleProduct({ type: 'prod-price', price: 0 })
   }, [])
 
   return (
@@ -96,11 +98,11 @@ const CreateProduct = () => {
       position: 'absolute', top: mobile ? '60px' : '0',
       left: microMobile ? '0' : mobile ? '40px' : '240px', width: mobile ? 'calc(100% - 40px)' : 'calc(100% - 240px)'
     } : {}}
-      onClick={(e) => { if (e.target.id === "dummy-container-update") setMobileDisplays(false) }}>
+      onClick={(e) => { if ((e.target as HTMLElement).id === "dummy-container-update") setMobileDisplays(false) }}>
 
       {!mobile && <BreadCrumbContainer />}
 
-      <Row className="dummy-container-mobile" onLoad={(e) => { mobile && admin && e.target.scrollIntoView({ block: 'center' }) }}
+      <Row className="dummy-container-mobile" onLoad={(e) => { if (mobile && admin) (e.target as HTMLElement).scrollIntoView({ block: 'center' }) }}
         style={mobile ? { ...containerStyles, margin: '0 auto', height: microMobile ? 'calc(100vh + 70px)' : 'fit-content' } : {
           height: '100vh', margin: '3rem auto',
           justifyContent: 'center', alignItems: 'start'
@@ -182,7 +184,7 @@ const CreateProduct = () => {
                       placeholder="Enter a valid description (20 chars min)"
                       required
                     ></textarea>
-                    {singleProduct.description &&
+                    {singleProduct && singleProduct.description &&
                       singleProduct.description.length < 20 && (
                         <Form.Text className="text-danger">
                           Please update with a description at least 20
@@ -195,10 +197,8 @@ const CreateProduct = () => {
                   <Form.Group controlId="exampleForm.ControlSelect2" style={!mobile && admin ? { marginRight: '15px', width: '31%' } : {}}>
                     <Form.Label>Choose product category</Form.Label>
                     <Form.Control
-                      custom
                       as="select"
                       required
-                      defaultValue={'t-shirts'}
                       onChange={(e) => handleProduct({ type: 'prod-category', category: e.target.value.toLowerCase() })}
                     >
                       {productCategories &&
@@ -217,7 +217,7 @@ const CreateProduct = () => {
                     <Form.Control
                       type="title"
                       onChange={(e) => handleProduct({ type: 'prod-price', price: e.target.value })}
-                      defaultValue={singleProduct.price}
+                      defaultValue={singleProduct ? singleProduct.price : 0}
                       required
                     />
                     {prodPrice && prodPrice === "0" && (
