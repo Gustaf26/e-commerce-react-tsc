@@ -9,7 +9,7 @@ import {
 import CartIcon from "./cart/CartIcon";
 
 import { useAuth } from "../contexts/useAuth";
-import { useMobile } from "../contexts/MobileContext";
+import { useMobile } from "../contexts/useMobileContext";
 import { useCreate } from "../contexts/useCreate";
 import useMobileStyles from '../hooks/useMobileStyles'
 

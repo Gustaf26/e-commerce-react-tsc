@@ -5,7 +5,7 @@ import { Link, useLocation } from "react-router";
 
 import { useCreate } from "../contexts/useCreate";
 import { useAuth } from "../contexts/useAuth";
-import { useMobile } from "../contexts/MobileContext";
+import { useMobile } from "../contexts/useMobileContext";
 
 import ArrowBack from "@mui/icons-material/ArrowBack";
 

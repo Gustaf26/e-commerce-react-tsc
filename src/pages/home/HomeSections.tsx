@@ -4,18 +4,26 @@ import { useNavigate } from 'react-router'
 import verkstadImg from '../../assets/images/verkstad.jpg'
 
 import { useCreate } from "../../contexts/useCreate"
-import { useMobile } from '../../contexts/MobileContext';
+import { useMobile } from '../../contexts/useMobileContext';
 import { useAuth } from '../../contexts/useAuth';
 
 import useMobileStyles from '../../hooks/useMobileStyles';
 
-function HomeSections() {
+interface HomeSectionsProps {
+    onLoad?: (e: Event) => void;
+    onClick: (e: Event) => void;
+    // other props...
+}
+
+type refComponent = HTMLDivElement | null
+
+const HomeSections: React.FC<HomeSectionsProps> = () => {
 
     const { allProducts, setSingleProduct, setSearchResults, setSearchString } = useCreate()
 
     const [slides, setSlides] = useState([])
 
-    const slidesref = useRef()
+    const slidesref: React.RefObject<refComponent> = useRef(null)
 
     const { mobile } = useMobile();
     const { microMobile } = useMobileStyles();
@@ -29,7 +37,16 @@ function HomeSections() {
 
     useEffect(() => {
 
-        setCurrentDevice(microMobile ? 'micromobile' : mobile ? 'mobile' : 'desktop')
+        const updateDeviceType = () => {
+
+            setCurrentDevice(microMobile ? 'micromobile' : mobile ? 'mobile' : 'desktop')
+        }
+
+        updateDeviceType()
+
+        window.addEventListener('resize', updateDeviceType)
+
+        return () => { window.removeEventListener('resize', updateDeviceType) }
 
     }, [mobile, microMobile, admin])
 
@@ -60,7 +77,7 @@ function HomeSections() {
     // Fuction for lazy loading of images in slider through a promise for every image
     const loadImages = () => {
 
-        let maxSlides = currentDevice === 'micromobile' ? 0 : (currentDevice === 'mobile') && admin ? 0 :
+        const maxSlides = currentDevice === 'micromobile' ? 0 : (currentDevice === 'mobile') && admin ? 0 :
             currentDevice === 'mobile' ? 7 : 8
 
         return allProducts.map(async (prod, i) => {
@@ -69,10 +86,10 @@ function HomeSections() {
 
                 return await new Promise((resolve, reject) => {
 
-                    let imageEl = document.createElement('img')
+                    const imageEl = document.createElement('img')
                     imageEl.style.padding = '0 20px 0 auto'
-                    imageEl.style.width = microMobile ? '100vw' : mobile & admin ? '160px' : mobile ? '170px' : '200px'
-                    imageEl.style.maxWidth = microMobile ? '100vw' : mobile & admin ? '160px' : mobile ? '170px' : '200px'
+                    imageEl.style.width = microMobile ? '100vw' : mobile && admin ? '160px' : mobile ? '170px' : '200px'
+                    imageEl.style.maxWidth = microMobile ? '100vw' : mobile && admin ? '160px' : mobile ? '170px' : '200px'
                     imageEl.style.height = '200px'
                     imageEl.style.transform = microMobile ? 'none' : mobile && admin ? 'skew(0deg, 4deg) rotateY(30deg)' : 'skew(0deg, 4deg)'
                     imageEl.style.objectFit = 'cover'
@@ -90,7 +107,7 @@ function HomeSections() {
                 })
             }
             else {
-                let dummyDiv = document.createElement('div')
+                const dummyDiv = document.createElement('div')
                 return await new Promise((resolve, reject) => { resolve(dummyDiv) })
             }
         })
@@ -100,13 +117,13 @@ function HomeSections() {
 
         const showSlides = () => {
             if (currentDevice !== deviceChanging.current) deviceChanging.current = currentDevice
-            let imagesPromises = loadImages()
+            const imagesPromises = loadImages()
 
-            let allFulfilledPromises = Promise.all(imagesPromises)
+            const allFulfilledPromises = Promise.all(imagesPromises)
 
             if (slides.length > 0) slidesref.current.innerHTML = ""
             allFulfilledPromises.then(res => {
-                res.forEach(slide => {
+                res.forEach((slide: HTMLImageElement) => {
                     if (!slides.includes(slide)) {
                         setSlides((prev) => [...prev, slide]); slidesref.current?.append(slide)
                     }

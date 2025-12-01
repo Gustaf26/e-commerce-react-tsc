@@ -1,22 +1,7 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "./useAuth";
 
-
-
-// export interface MobileContextProps {
-//     Provider: React.FC,
-//     Consumer: React.FC,
-//     children: React.ReactNode,
-//     admin: boolean
-// }
-
-
-
-const MobileContext = createContext();
-
-const useMobile = () => {
-    return useContext(MobileContext);
-};
+import { MobileContext } from "./useMobileContext";
 
 const MobileContextProvider = (props) => {
 
@@ -30,6 +15,9 @@ const MobileContextProvider = (props) => {
 
 
     const contextValues = {
+        Provider: MobileContext.Provider,
+        Consumer: MobileContext.Consumer,
+        children: props.children as React.ReactNode,
         setMobile,
         mobile,
         mobileDisplays,
@@ -64,4 +52,4 @@ const MobileContextProvider = (props) => {
     );
 };
 
-export { MobileContext, useMobile, MobileContextProvider };
+export { MobileContext, MobileContextProvider };

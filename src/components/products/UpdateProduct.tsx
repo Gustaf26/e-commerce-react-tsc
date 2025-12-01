@@ -10,7 +10,7 @@ import Icon from '@mui/material/Icon';
 
 import { useCreate } from "../../contexts/useCreate";
 import { useAuth } from '../../contexts/useAuth'
-import { useMobile } from '../../contexts/MobileContext'
+import { useMobile } from '../../contexts/useMobileContext'
 
 import MobileList from '../../cms_components/MobileList'
 import useMobileStyles from '../../hooks/useMobileStyles'

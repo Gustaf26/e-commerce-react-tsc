@@ -11,7 +11,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import Navigation from '../../components/Navigation'
 
 import { useAuth } from "../../contexts/useAuth";
-import { useMobile } from "../../contexts/MobileContext";
+import { useMobile } from "../../contexts/useMobileContext";
 
 import MobileList from '../../cms_components/MobileList'
 import useMobileStyles from '../../hooks/useMobileStyles'

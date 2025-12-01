@@ -11,7 +11,7 @@ import {
 
 import { useAuth } from "../contexts/useAuth";
 import { useCreate } from "../contexts/useCreate";
-import { useMobile } from '../contexts/MobileContext'
+import { useMobile } from '../contexts/useMobileContext'
 
 import useMobileStyles from "../hooks/useMobileStyles";
 

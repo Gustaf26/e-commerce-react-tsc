@@ -6,11 +6,20 @@ import { Card, CardFooter, Form, Alert } from "react-bootstrap";
 
 import { useAuth } from "../../contexts/useAuth";
 import { useCreate } from "../../contexts/useCreate";
-import { useMobile } from "../../contexts/MobileContext";
+import { useMobile } from "../../contexts/useMobileContext";
+
+import useMobileStyles from '../../hooks/useMobileStyles'
 
 import useCart from '../../hooks/useCart'
 
-const ProductCard = ({ item, index }) => {
+import { Product } from "../../contexts/useCreate";
+
+type ProductCardProps = {
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+    item: Product;
+}
+
+const ProductCard: React.FC<ProductCardProps> = ({ item }) => {
 
     const [lastImgIndex, setLastImgIndex] = useState('')
     const [activeSize, setActiveSize] = useState()
@@ -21,7 +30,9 @@ const ProductCard = ({ item, index }) => {
     const navigate = useNavigate();
     const { admin } = useAuth();
     const { setSingleProduct, productOption, setProductOption, allProducts, setProdId } = useCreate();
-    const { mobile, mobileDisplays, setMobileDisplays, mobileWidth, microMobile } = useMobile()
+    const { mobile, mobileDisplays, setMobileDisplays, mobileWidth } = useMobile()
+
+    const { microMobile } = useMobileStyles()
 
     const location = useLocation();
 
@@ -53,7 +64,7 @@ const ProductCard = ({ item, index }) => {
     return (<Card key={item.id} className={!mobile && view === 'single' ? 'product-card single' : microMobile ? 'product-card micromobile' :
         mobile && admin ? 'product-card mobile admin' : mobile ? 'product-card mobile' : "product-card"} onClick={() => {
             setProductOption(item.category); setSingleProduct(item);
-            mobileDisplays && setMobileDisplays(!mobileDisplays)
+            if (mobileDisplays) setMobileDisplays(!mobileDisplays)
         }}
         style={mobile && admin ? {
             width: (view === 'single') ? `calc(${mobileWidth}px - 35px)` : `calc(${mobileWidth}px - 80px)`

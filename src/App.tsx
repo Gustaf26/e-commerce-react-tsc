@@ -27,12 +27,13 @@ import { MobileContextProvider } from "./contexts/MobileContext.tsx";
 import "./assets/scss/app.scss";
 
 const App = () => {
+
 	const { productCategories, setGlobalCategories, cartShowing } = useCreate();
 	const { admin } = useAuth();
 
 
 	useEffect(() => {
-		const getProds = async () => {
+		const getProds = () => {
 			setGlobalCategories([
 				{ name: "t-shirts" },
 				{ name: "troussers" },
@@ -42,8 +43,6 @@ const App = () => {
 
 		getProds();
 	}, []);
-
-
 
 	return (
 		<Router>
@@ -73,7 +72,7 @@ const App = () => {
 								<Route path={"products/*"}>
 									{admin && <Route path={"prod-list"} element={<ProdList />} />}
 									{productCategories &&
-										productCategories.map((category, i) => (
+										productCategories.map((category) => (
 											<>
 												<Route
 													path={`${category.name}`}

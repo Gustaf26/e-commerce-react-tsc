@@ -10,7 +10,7 @@ import CardContainer from './CardContainer'
 import BreadCrumbContainer from "../BreadCrumbContainer";
 
 import { useCreate } from "../../contexts/useCreate";
-import { useMobile } from '../../contexts/MobileContext'
+import { useMobile } from '../../contexts/useMobileContext'
 import { useAuth } from "../../contexts/useAuth";
 
 import "../../assets/scss/app.scss";

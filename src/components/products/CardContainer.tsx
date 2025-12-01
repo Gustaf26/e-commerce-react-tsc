@@ -3,7 +3,7 @@ import { useLocation } from 'react-router'
 import { Row } from "react-bootstrap";
 
 import { useAuth } from "../../contexts/useAuth";
-import { useMobile } from "../../contexts/MobileContext";
+import { useMobile } from "../../contexts/useMobileContext";
 
 import useMobileStyles from "../../hooks/useMobileStyles";
 

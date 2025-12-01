@@ -12,7 +12,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 
-import { useMobile } from "../../contexts/MobileContext";
+import { useMobile } from "../../contexts/useMobileContext";
 
 
 const ProdList = () => {

@@ -2,10 +2,12 @@ import { useRef, useState } from "react";
 import { Row, Col, Form, Button, Card, Alert } from "react-bootstrap";
 import { Link, useNavigate } from "react-router";
 import { useAuth } from "../../contexts/useAuth";
-import { useMobile } from "../../contexts/MobileContext";
+import { useMobile } from "../../contexts/useMobileContext";
+
+type EmailRef = HTMLInputElement | null
 
 const Login = () => {
-  const emailRef = useRef();
+  const emailRef = useRef<EmailRef>(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const { login, checkIfAdmin, setAdmin } = useAuth();
@@ -19,9 +21,9 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    let email = e.target[0].value
-    let passOne = e.target[1].value
-    let adminCheck = e.target[2].checked
+    const email = e.target[0].value
+    const passOne = e.target[1].value
+    const adminCheck = e.target[2].checked
 
     setError(null);
 
@@ -34,7 +36,7 @@ const Login = () => {
       setLoading(false)
 
       // Check if user is admin manually
-      let admin = checkIfAdmin(user.email)
+      const admin = checkIfAdmin(user.email)
       if (admin) {
         console.log(adminCheck)
         if (adminCheck === false) {
@@ -77,7 +79,7 @@ const Login = () => {
             }}>Please Log In</Card.Title>
             {error && <Alert variant="danger">{error}</Alert>}
             <Form style={!mobile ? { display: 'flex', flexWrap: 'wrap', justifyContent: 'space-evenly', alignItems: 'start' } : { minWidth: '' }}
-              onSubmit={handleSubmit} onChange={() => { setError(null); setAlert('') }}>
+              onSubmit={handleSubmit} onChange={() => { setError(null); setAlert(false) }}>
               <Form.Group className="form-div mt-2" id="email">
                 <Form.Label>Email</Form.Label>
                 <Form.Control

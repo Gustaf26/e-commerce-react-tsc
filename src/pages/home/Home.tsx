@@ -7,7 +7,7 @@ import Icon from "@mui/material/Icon";
 import Navigation from "../../components/Navigation";
 
 //Contexts
-import { useMobile } from "../../contexts/MobileContext";
+import { useMobile } from "../../contexts/useMobileContext";
 import { useAuth } from "../../contexts/useAuth";
 import { useCreate } from "../../contexts/useCreate";
 
@@ -35,9 +35,9 @@ const Home = () => {
   const navigate = useNavigate();
   const { admin } = useAuth();
 
-  const toggleMobileDisplays = (e) => {
+  const toggleMobileDisplays = (e: Event) => {
 
-    const { id } = e.target
+    const { id } = (e.target as HTMLElement)
 
     if (id === "dummy-container-home") { setMobileDisplays(false); return }
     else if (id === 'icon-mobile-displays') setMobileDisplays(!mobileDisplays);
@@ -64,7 +64,7 @@ const Home = () => {
           onClick={
             (window.innerWidth < 1100 || mobile) && menuShowing
               ? (e) => {
-                if (e.target.id === "home-card-text") setMenuShowing(false);
+                if ((e.target as HTMLElement).id === "home-card-text") setMenuShowing(false);
               }
               : null
           }
@@ -84,7 +84,7 @@ const Home = () => {
           {mobileDisplays && <MobileList />}
 
           <HomeSections onLoad={(e) => {
-            e.target.scrollIntoView({ block: 'end' });
+            (e.target as HTMLElement).scrollIntoView({ block: 'end' });
           }}
             onClick={() =>
               !admin && menuShowing && mobile ? setMenuShowing(false) : null

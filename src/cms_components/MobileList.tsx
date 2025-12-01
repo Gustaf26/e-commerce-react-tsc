@@ -7,7 +7,7 @@ import ListItemText from '@mui/material/ListItemText';
 
 import { Row } from "react-bootstrap";
 
-import { useMobile } from '../contexts/MobileContext'
+import { useMobile } from '../contexts/useMobileContext'
 
 const MobileList = () => {
 

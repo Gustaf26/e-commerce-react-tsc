@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import { useMobile } from '../contexts/MobileContext'
+import { useMobile } from '../contexts/useMobileContext'
 
 const useMobileStyles = () => {
 

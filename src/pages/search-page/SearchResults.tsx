@@ -13,7 +13,7 @@ import ProductCard from "../../components/products/ProductCard";
 
 import { useCreate } from "../../contexts/useCreate";
 import { useAuth } from "../../contexts/useAuth";
-import { useMobile } from "../../contexts/MobileContext";
+import { useMobile } from "../../contexts/useMobileContext";
 
 import useMobileStyles from '../../hooks/useMobileStyles'
 
@@ -63,7 +63,7 @@ const SearchResults = () => {
     <>
       <div id="dummy-container-products" className={microMobile ? 'dummy-container-products micromobile' : admin && mobile ? 'dummy-container-products admin mobile' :
         admin ? 'dummy-container-products admin' : mobile ? 'dummy-container-products mobile' : 'dummy-container-products'}
-        onClick={(e) => { if (e.target.id === "dummy-container-products") setMobileDisplays(false) }}>
+        onClick={(e) => { if ((e.target as HTMLElement).id === "dummy-container-products") setMobileDisplays(false) }}>
 
         {((admin && !mobile) || (admin && microMobile)) && <Navigation />}
         {!mobile && <BreadcrumbContainer />}

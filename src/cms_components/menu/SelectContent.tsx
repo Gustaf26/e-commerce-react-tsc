@@ -15,7 +15,7 @@ import DevicesRoundedIcon from '@mui/icons-material/DevicesRounded';
 import SmartphoneRoundedIcon from '@mui/icons-material/SmartphoneRounded';
 import ConstructionRoundedIcon from '@mui/icons-material/ConstructionRounded';
 
-import { useMobile } from '../../contexts/MobileContext'
+import { useMobile } from '../../contexts/useMobileContext'
 
 const Avatar = styled(MuiAvatar)(({ theme }) => ({
     width: 28,

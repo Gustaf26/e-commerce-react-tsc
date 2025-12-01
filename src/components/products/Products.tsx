@@ -11,7 +11,7 @@ interface ProductsProps {
 }
 
 
-const Products: React.FC<ProductsProps> = ({ onLoad, type }) => {
+const Products: React.FC<ProductsProps> = ({ type }) => {
 
   const { allProducts, setLocation } = useCreate()
   const location = useLocation()

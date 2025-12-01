@@ -14,7 +14,7 @@ import MenuContent from './menu/MenuContent';
 import OptionsMenu from './menu/OptionsMenu';
 
 import { useAuth } from '../contexts/useAuth'
-import { useMobile } from '../contexts/MobileContext'
+import { useMobile } from '../contexts/useMobileContext'
 
 import useMobileStyles from '../hooks/useMobileStyles';
 
