@@ -19,8 +19,8 @@ export type CreateContextProps = {
     imageUrl: string;
     setProductOption: React.Dispatch<React.SetStateAction<string>>;
     productOption: string;
-    setSingleProduct: React.Dispatch<React.SetStateAction<string>>;
-    singleProduct: string;
+    setSingleProduct: React.Dispatch<React.SetStateAction<Product> | null>;
+    singleProduct: Product;
     productCategories: { name: string }[];
     setGlobalCategories: React.Dispatch<React.SetStateAction<{ name: string }[]>>;
     setSearchString: React.Dispatch<React.SetStateAction<string>>;
@@ -28,7 +28,7 @@ export type CreateContextProps = {
     searchResults: Product[];
     setSearchResults: React.Dispatch<React.SetStateAction<Product[]>>;
     prodId: string;
-    setProdId: React.Dispatch<React.SetStateAction<string>>;
+    setProdId: React.Dispatch<React.SetStateAction<number> | null>;
     setLocation: React.Dispatch<React.SetStateAction<string>>;
     location: string;
     setYScrolling: React.Dispatch<React.SetStateAction<boolean>>;

@@ -9,7 +9,7 @@ import { useMobile } from "../contexts/MobileContext";
 
 import ArrowBack from "@mui/icons-material/ArrowBack";
 
-export default function BreadCrumbContainer({ qty }) {
+export default function BreadCrumbContainer() {
 	const { productCategories, allProducts } = useCreate();
 	const { admin } = useAuth();
 	const { mobile } = useMobile();

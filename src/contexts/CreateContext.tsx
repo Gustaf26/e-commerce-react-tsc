@@ -10,14 +10,14 @@ const CreateContextProvider: React.FC<{ children: React.ReactNode }> = (props: {
   const [imageUrl, setImageUrl] = useState("");
   const [loading, setLoading] = useState(false);
   const [productOption, setProductOption] = useState(null);
-  const [singleProduct, setSingleProduct] = useState("");
+  const [singleProduct, setSingleProduct] = useState(null);
   const [productCategories, setGlobalCategories] = useState([]);
   const [allProducts, setProducts] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [searchString, setSearchString] = useState("");
   const [cartShowing, setCartShowing] = useState(false)
   const [location, setLocation] = useState();
-  const [prodId, setProdId] = useState("");
+  const [prodId, setProdId] = useState(null);
   const [yScrolling, setYScrolling] = useState(false)
 
 

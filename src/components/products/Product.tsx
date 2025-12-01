@@ -19,7 +19,12 @@ import Icon from '@mui/material/Icon';
 import MobileList from '../../cms_components/MobileList'
 import useMobileStyles from '../../hooks/useMobileStyles'
 
-const Product = () => {
+interface ProductProps {
+  onLoad?: (e: Event) => void;
+  // other props...
+}
+
+const Product: React.FC<ProductProps> = () => {
 
   const {
     singleProduct,
@@ -47,7 +52,7 @@ const Product = () => {
       setLocation(location.pathname);
       setProdId(Number(productId));
 
-      let singleP = allProducts.filter(prod => prod.id === Number(productId))
+      const singleP = allProducts.filter(prod => Number(prod.id) === Number(productId))
 
       if (singleP[0]) { setSingleProduct(singleP[0]); setProductOption(singleP[0].category); }
       if (window.innerWidth <= 1000) setMobile(true)
@@ -64,7 +69,7 @@ const Product = () => {
       <div id="dummy-container-products"
         className={microMobile ? 'dummy-container-products micromobile' : admin && mobile ? 'dummy-container-products admin mobile' :
           admin ? 'dummy-container-products admin' : mobile ? 'dummy-container-products mobile' : 'dummy-container-products'}
-        onClick={(e) => { if (e.target.id === "dummy-container-products") setMobileDisplays(false) }}>
+        onClick={(e) => { if ((e.target as HTMLElement).id === "dummy-container-products") setMobileDisplays(false) }}>
 
         {((admin && microMobile) || (admin && !mobile)) && <Navigation />}
 
@@ -81,7 +86,7 @@ const Product = () => {
           {mobileDisplays && <MobileList />}
 
           {!singleProduct && <BounceLoader color={"#888"} size={20} />}
-          <CardContainer onLoad={(e) => { mobile && e.target.scrollIntoView({ block: 'start', behaviour: 'smooth' }) }}>
+          <CardContainer onLoad={(e) => { if (mobile) (e.target as HTMLElement).scrollIntoView({ block: 'start', behavior: 'smooth' }) }}>
             {singleProduct ? (
               <ProductCard index={0} item={singleProduct} />
             ) : null}

@@ -4,7 +4,14 @@ import ProductsGrid from "./ProductsGrid";
 
 import { useCreate } from "../../contexts/useCreate";
 
-const Products = ({ type }) => {
+interface ProductsProps {
+  onLoad?: (e: Event) => void;
+  type: string
+  // other props...
+}
+
+
+const Products: React.FC<ProductsProps> = ({ onLoad, type }) => {
 
   const { allProducts, setLocation } = useCreate()
   const location = useLocation()
