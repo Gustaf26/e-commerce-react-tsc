@@ -15,9 +15,9 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let email = e.target[0].value
-    let passOne = e.target[1].value
-    let passTwo = e.target[2].value
+    const email = e.target[0].value
+    const passOne = e.target[1].value
+    const passTwo = e.target[2].value
 
     // make sure user has entered the same password in both input fields
     if (passOne !== passTwo) {
@@ -30,7 +30,7 @@ const Signup = () => {
     try {
       // try to sign up the user with the specified credentials
       setLoading(true);
-      let message = await signup(email, passOne);
+      const message = await signup(email, passOne);
       if (message.error) {
         alert(error)
         navigate('/signup')

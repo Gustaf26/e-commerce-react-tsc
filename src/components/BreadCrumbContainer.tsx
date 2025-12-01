@@ -20,9 +20,9 @@ export default function BreadCrumbContainer() {
 	const dummyProdCategories = productCategories.map((cat) => cat.name);
 
 	useEffect(() => {
-		if (location.pathname.lastIndexOf("/") === location.pathname.length - 1) {
-			location.pathname = location.pathname.slice(0, location.pathname.length - 1);
-		}
+		// if (location.pathname.lastIndexOf("/") === location.pathname.length - 1) {
+		// 	location.pathname = location.pathname.slice(0, location.pathname.length - 1);
+		// }
 		const lastDash = location.pathname.lastIndexOf("/");
 		const lastChar = location.pathname.length;
 		let subcategory = location.pathname.slice(lastDash + 1, lastChar);
@@ -41,7 +41,7 @@ export default function BreadCrumbContainer() {
 		let singleProd;
 
 		if (subcategory && Number(subcategory)) {
-			singleProd = allProducts.filter((prod) => prod.id === Number(subcategory));
+			singleProd = allProducts.filter((prod) => Number(prod.id) === Number(subcategory));
 		}
 		if (singleProd && singleProd.length > 0) {
 			subcategory = singleProd[0].name;

@@ -86,9 +86,9 @@ const Product: React.FC<ProductProps> = () => {
           {mobileDisplays && <MobileList />}
 
           {!singleProduct && <BounceLoader color={"#888"} size={20} />}
-          <CardContainer onLoad={(e) => { if (mobile) (e.target as HTMLElement).scrollIntoView({ block: 'start', behavior: 'smooth' }) }}>
+          <CardContainer onLoad={(e: Event) => { if (mobile) (e.target as HTMLElement).scrollIntoView({ block: 'start', behavior: 'smooth' }) }}>
             {singleProduct ? (
-              <ProductCard index={0} item={singleProduct} />
+              <ProductCard setLoading={() => { }} item={singleProduct} />
             ) : null}
           </CardContainer>
         </Row>

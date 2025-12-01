@@ -84,7 +84,7 @@ const SearchResults = () => {
             {searchResults.length > 0 &&
               searchResults.map((item, i) => (
                 <ProductCard setLoading={setLoading} key={item.id} onLoad={(e) => {
-                  if (i === 0) e.target.scrollIntoView({ block: 'start' })
+                  if (i === 0) (e.target as HTMLElement).scrollIntoView({ block: 'start' })
                 }} item={item} />
               ))}
           </CardContainer>

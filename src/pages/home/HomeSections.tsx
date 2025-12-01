@@ -177,7 +177,7 @@ const HomeSections: React.FC<HomeSectionsProps> = () => {
                     <div style={{
                         display: 'flex', justifyContent: 'center', flexWrap: 'nowrap',
                         width: microMobile ? '100%' : mobile && admin ? '400px' : admin ? 'calc(100%)' : '100%',
-                        margin: admin && !mobile & !microMobile ? ' 0 auto' : '0 auto'
+                        margin: admin && !mobile && !microMobile ? ' 0 auto' : '0 auto'
                     }} ref={slidesref}>
                         {!slides.length ? [0, 1, 2, 3, 4, 5, 6, 7].map(num => {
                             return (<div key={'placeholder' + num} id="home-slider-placeholder-container"

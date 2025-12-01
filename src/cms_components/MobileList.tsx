@@ -13,7 +13,7 @@ const MobileList = () => {
 
     const { setMobileWidth, setMobileHeight, mobileWidth, mobileDisplays } = useMobile()
     const [selectedIndex, setSelectedIndex] = useState(0)
-    const [deviceTypes, setDeviceTypes] = useState()
+    const [deviceTypes, setDeviceTypes] = useState([])
 
 
     useEffect(() => {
@@ -41,8 +41,8 @@ const MobileList = () => {
             {deviceTypes && deviceTypes.map((device, i) => {
                 return (
                     <ListItem disablePadding sx={{ display: 'block', borderBottom: '1px solid rgb(220,220,220)' }}>
-                        <ListItemButton id="0" selected={selectedIndex === i.toString()} onClick={(e) => {
-                            setSelectedIndex(i.toString());
+                        <ListItemButton id="0" selected={selectedIndex === i} onClick={(e) => {
+                            setSelectedIndex(i);
                             setMobileWidth(device.width);
                             setMobileHeight(device.height);
                         }} className="mobile-displays-item" >

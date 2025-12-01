@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { styled } from '@mui/material/styles';
 import MuiDrawer, { drawerClasses } from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
@@ -41,7 +39,7 @@ export default function CMSNav() {
     });
 
 
-    return (
+    return (<>
         <Drawer id="CMS-nav" variant="permanent"
             sx={{
                 display: { xs: 'block', md: 'block' },
@@ -85,6 +83,6 @@ export default function CMSNav() {
                     </Typography>
                 </Box>
             </Stack>
-        </Drawer >
+        </Drawer ></>
     );
 }

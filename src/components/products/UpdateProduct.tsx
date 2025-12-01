@@ -46,7 +46,7 @@ const UpdateProduct = () => {
   }
 
   const deleteProd = (e) => {
-    let otherProds = allProducts.filter(prod => prod.id !== state.id)
+    const otherProds = allProducts.filter(prod => prod.id !== state.id)
     setProducts(otherProds)
     navigate(admin ? `/cms/products/${singleProduct.category}` : `/products/${singleProduct.category}`, { replace: true })
   }
@@ -219,10 +219,9 @@ const UpdateProduct = () => {
                     <Form.Group controlId="exampleForm.ControlSelect2" style={!mobile && admin ? { marginRight: '15px', width: '31%' } : {}}>
                       <Form.Label>Choose product category</Form.Label>
                       <Form.Control
-                        custom
                         as="select"
                         required
-                        onClick={(e) => handleProduct({ type: 'prod-category', category: e.target.value.toLowerCase() })}
+                        onClick={(e) => handleProduct({ type: 'prod-category', category: (e.target as HTMLSelectElement).value.toLowerCase() })}
                       >
                         {productCategories &&
                           productCategories.map((category, i) => {

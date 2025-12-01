@@ -15,14 +15,18 @@ import useCart from '../../hooks/useCart'
 import { Product } from "../../contexts/useCreate";
 
 type ProductCardProps = {
-    setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+    onLoad?: (e: Event) => void;
+    setLoading?: React.Dispatch<React.SetStateAction<number>>;
     item: Product;
+    index?: number;
+    id?: number
+
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ item }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ setLoading, item, index }) => {
 
     const [lastImgIndex, setLastImgIndex] = useState('')
-    const [activeSize, setActiveSize] = useState()
+    const [activeSize, setActiveSize] = useState('')
     const [view, setView] = useState('')
     const [sizeAlert, setSizeAlert] = useState(false)
     const updateCart = useCart()
@@ -41,11 +45,17 @@ const ProductCard: React.FC<ProductCardProps> = ({ item }) => {
 
     // Effect for setting single product view if some urls are reloaded
     useEffect(() => {
-        if ((location.pathname === `/cms/products/${productOption}/${Number(productId)}`) ||
-            (location.pathname === '/cms/products/update') ||
-            (location.pathname === `/products/${productOption}/${Number(productId)}`) ||
-            (location.pathname === '/products/update')) { setView('single'); }
-        else { setView('') }
+
+        const changeView = () => {
+
+            if ((location.pathname === `/cms/products/${productOption}/${Number(productId)}`) ||
+                (location.pathname === '/cms/products/update') ||
+                (location.pathname === `/products/${productOption}/${Number(productId)}`) ||
+                (location.pathname === '/products/update')) { setView('single'); }
+            else { setView('') }
+        }
+
+        changeView()
 
 
     }, [location, productOption, lastImgIndex])
@@ -111,12 +121,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ item }) => {
                         if (i <= 3) {
                             return (<li>
                                 <img className="related-prods-pic" onClick={(e) => {
-                                    setProdId(prod.id)
+                                    setProdId(Number(prod.id))
                                     e.stopPropagation()
                                     setSingleProduct(prod)
                                     navigate(admin ? `/cms/products/${prod.category}/${prod.id}` : `/products/${prod.category}/${prod.id}`, { replace: true })
                                 }} alt={prod.description} src={prod.thumbnail} />
-                                <p>{prod.title}</p>
+                                <p>{prod.name}</p>
                             </li>)
                         }
                         else return null
@@ -126,8 +136,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ item }) => {
 
         <Card.Body
             onClick={(e) => {
-                if (e.target.id === 'updateProduct') { setSingleProduct(item); navigate(`/cms/products/update/`, { replace: true }) }
-                else if (e.target.parentElement.id !== 'product-card-footer' && e.target.id !== 'product-card-footer-container') {
+                if ((e.target as HTMLElement).id === 'updateProduct') { setSingleProduct(item); navigate(`/cms/products/update/`, { replace: true }) }
+                else if ((e.target as HTMLElement).parentElement.id !== 'product-card-footer' && (e.target as HTMLElement).id !== 'product-card-footer-container') {
                     setSingleProduct(item);
                     navigate(admin ? `/cms/products/${item.category}/${item.id}` : `/products/${item.category}/${item.id}`, { replace: true })
                 }
@@ -140,7 +150,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ item }) => {
             {" "}
             <div>
                 <Card.Text style={{ color: 'rgb(79, 48, 48)' }} className="small">
-                    <b>{(view !== 'single') ? item.name.slice(0, item.name.slice(0, 30).lastIndexOf(' ')) : item.name}</b>
+                    <b>{item.name}</b>
                 </Card.Text>
                 <Card.Text className=" small">
                     <b className="small">Price: </b> {item.price} €
@@ -164,11 +174,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ item }) => {
                                 return (<li>
                                     <img className="related-prods-pic" onClick={(e) => {
                                         e.stopPropagation()
-                                        setProdId(prod.id)
+                                        setProdId(Number(prod.id))
                                         setSingleProduct(prod);
                                         navigate(admin ? `/cms/products/${prod.category}/${prod.id}` : `/products/${prod.category}/${prod.id}`, { replace: true })
                                     }} alt={prod.description} src={prod.thumbnail} />
-                                    <p>{prod.title}</p>
+                                    <p>{prod.name}</p>
                                 </li>)
                             }
                             else return null

@@ -9,7 +9,8 @@ export type Product = {
     category: string,
     description: string,
     attLink: string,
-    attribution: string
+    attribution: string,
+    qty?: number
 }
 export type CreateContextProps = {
     Provider: React.FC,

@@ -28,7 +28,7 @@ const ProductsGrid = ({ products, type }) => {
 				className={microMobile ? 'dummy-container-products micromobile' : admin && mobile ? 'dummy-container-products admin mobile' :
 					admin ? 'dummy-container-products admin' : mobile ? 'dummy-container-products mobile' : 'dummy-container-products'}
 				onClick={(e) => {
-					if (e.target.id === "dummy-container-products") setMobileDisplays(false);
+					if ((e.target as HTMLElement).id === "dummy-container-products") setMobileDisplays(false);
 				}}
 			>
 				{((admin && microMobile) || (admin && !mobile)) && <Navigation />}
@@ -39,7 +39,7 @@ const ProductsGrid = ({ products, type }) => {
 					onLoad={(e) => {
 						setProductOption(type);
 					}}
-					style={mobile && admin & !microMobile ? { ...containerStyles } : {}}>
+					style={mobile && admin && !microMobile ? { ...containerStyles } : {}}>
 					{(admin && mobile && !microMobile) && <Navigation />}
 
 					{mobile && admin && !microMobile && (
@@ -55,41 +55,12 @@ const ProductsGrid = ({ products, type }) => {
 
 					{mobileDisplays && <MobileList />}
 
-					{/* Blurred cards for lazy loading of images */}
-					{/* {!contentLoaded ? (<CardContainer className='category-products-placeholder'>
-
-						{products.map((prod, i) => {
-							return (
-								<Card className="product-card blurred">
-									<img alt="blurred product" src={dummyCard} />
-									<Card.Body style={{ display: 'block' }} className="py-0">
-										<Card.Text style={{ color: 'rgb(79, 48, 48)' }} className="small">
-											<b>{prod.name}</b>
-										</Card.Text>
-										<Card.Text className=" small">
-											<b className="small">Price: </b> {prod.price} €
-										</Card.Text>
-										{prod.attribution && <Card.Text className=" small">
-											<a className="small" href={prod.attLink}>{prod.attribution}</a>
-										</Card.Text>}
-										<Card.Text className=" small">
-											<b className="small">Description: </b>{" "}
-											<span className="small">
-												{prod.description}
-											</span>
-										</Card.Text>
-									</Card.Body>
-								</Card>
-							)
-						})}
-					</CardContainer>
-					) : null} */}
 					<CardContainer>
 						{products &&
 							products.map((item, i) => (
 								<ProductCard
 									index={i}
-									id={`${item.id}`}
+									id={item.id}
 									key={item.id}
 									item={item}
 								/>

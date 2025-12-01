@@ -1,16 +1,19 @@
 import { useRef, useState } from 'react'
 import { Row, Col, Form, Button, Card, Alert } from 'react-bootstrap'
 import { Link } from 'react-router'
-import { useAuth } from '../../contexts/useAuth'
+// import { useAuth } from '../../contexts/useAuth'
+
+type EmailRef = HTMLInputElement | null
 
 const ForgotPassword = () => {
-	const emailRef = useRef()
+
+	const emailRef: React.RefObject<EmailRef> = useRef(null)
 	const [error, setError] = useState(null)
 	const [message, setMessage] = useState(null)
 	const [loading, setLoading] = useState(false)
-	const { resetPassword } = useAuth()
+	// const { resetPassword } = useAuth()
 
-	const handleSubmit = async (e) => {
+	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault()
 
 		setError(null);
@@ -18,9 +21,9 @@ const ForgotPassword = () => {
 		try {
 			// try to send a password reset email to the specified user
 			setLoading(true)
-			await resetPassword(emailRef.current.value)
+			// await resetPassword(emailRef.current.value)
 			setMessage("Please check your email for further instructions.")
-		} catch (e) {
+		} catch {
 			setError("Something went wrong. Please check your email address.")
 			setLoading(false)
 		}

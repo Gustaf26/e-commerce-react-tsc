@@ -10,7 +10,7 @@ const Logout = () => {
   useEffect(() => {
 
     setTimeout(() => {
-      (!admin || !currentUser) && navigate("/", { replace: true });
+      if (!admin || !currentUser) navigate("/", { replace: true });
     }, 1000)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
