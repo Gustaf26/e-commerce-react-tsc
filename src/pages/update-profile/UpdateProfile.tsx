@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { CSSProperties, useState } from "react";
 import { Link, useNavigate } from 'react-router'
 
 import { Row, Form, Button, Card, Alert } from "react-bootstrap";
@@ -58,12 +58,13 @@ const UpdateProfile = () => {
   return (
     <>
       <Row id="dummy-container-products" className={microMobile ? 'dummy-container-products micromobile' : admin && mobile ? 'dummy-container-products admin mobile' :
-        admin ? 'dummy-container-products admin' : mobile ? 'dummy-container-products mobile' : 'dummy-container-products'} onClick={(e) => { if (e.target.id === "dummy-container-products") setMobileDisplays(false) }}>
+        admin ? 'dummy-container-products admin' : mobile ? 'dummy-container-products mobile' : 'dummy-container-products'}
+        onClick={(e) => { if ((e.target as HTMLElement).id === "dummy-container-products") setMobileDisplays(false) }}>
         {((admin && microMobile) || (admin && !mobile)) && <Navigation />}
         <div id="dummy-container-products-row" className={microMobile ? 'dummy-container-products-row micromobile' :
           admin && mobile ? 'dummy-container-products-row admin mobile' :
             admin ? 'dummy-container-products-row admin' : mobile ? 'dummy-container-products-row mobile' : 'dummy-container-products-row'}
-          style={mobile && admin && !microMobile ? { ...containerStyles }
+          style={mobile && admin && !microMobile ? { ...containerStyles } as CSSProperties
             : {}}>
 
           {admin && mobile && !microMobile && <Navigation />}

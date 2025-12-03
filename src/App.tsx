@@ -24,7 +24,8 @@ import { useCreate } from "./contexts/useCreate";
 import { useAuth } from "./contexts/useAuth.ts";
 import { MobileContextProvider } from "./contexts/MobileContext.tsx";
 
-import "./assets/scss/app.scss";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "./assets/scss/app.css";
 
 const App = () => {
 

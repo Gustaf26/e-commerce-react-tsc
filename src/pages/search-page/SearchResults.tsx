@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { CSSProperties, useEffect, useState } from "react";
 import { useLocation } from "react-router";
 
 import { Row } from "react-bootstrap";
@@ -70,7 +70,7 @@ const SearchResults = () => {
 
         <Row className={microMobile ? 'dummy-container-products-row micromobile' : admin && mobile ? 'dummy-container-products-row admin mobile' :
           admin ? 'dummy-container-products-row admin' : mobile ? 'dummy-container-products-row mobile' : 'dummy-container-products-row'}
-          style={microMobile ? { marginTop: '3rem', top: '0px' } : mobile && admin ? { ...containerStyles, padding: '10px 10px' }
+          style={microMobile ? { marginTop: '3rem', top: '0px' } as CSSProperties : mobile && admin ? { ...containerStyles, padding: '10px 10px' } as CSSProperties
             : {}}>
           {admin && mobile && !microMobile && <Navigation />}
 

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { CSSProperties, useEffect } from "react";
 import { useParams, useLocation } from "react-router";
 
 import { BounceLoader } from "react-spinners";
@@ -13,7 +13,7 @@ import { useCreate } from "../../contexts/useCreate";
 import { useMobile } from '../../contexts/useMobileContext'
 import { useAuth } from "../../contexts/useAuth";
 
-import "../../assets/scss/app.scss";
+import "../../assets/scss/app.css";
 import Icon from '@mui/material/Icon';
 
 import MobileList from '../../cms_components/MobileList'
@@ -77,7 +77,7 @@ const Product: React.FC<ProductProps> = () => {
 
         <Row className={microMobile ? 'dummy-container-products-row micromobile' : admin && mobile ? 'dummy-container-products-row admin mobile' :
           admin ? 'dummy-container-products-row admin' : mobile ? 'dummy-container-products-row mobile' : 'dummy-container-products-row'}
-          style={mobile && admin && !microMobile ? { ...containerStyles } : {}}>
+          style={mobile && admin && !microMobile ? { ...containerStyles } as CSSProperties : {}}>
 
           {admin && mobile && !microMobile && <Navigation />}
 

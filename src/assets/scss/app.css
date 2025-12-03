@@ -2,12 +2,10 @@
  * Main App Styles
  */
 
-// /* @import "~bootstrap/scss/bootstrap";
-@import "bootstrap/scss/bootstrap";
-@import "dropzone";
+
 
 body {
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(224, 191, 153);
   padding: 0;
   margin: 0;
   max-height: fit-content;
@@ -48,7 +46,7 @@ body {
     height: 160px;
     border-top-left-radius: 0%;
 
-    &.admin {}
+
   }
 
   &.mobile {
@@ -120,7 +118,7 @@ body {
   &.micromobile {
     width: 100%;
 
-    &.admin {}
+
   }
 
   &.mobile {
@@ -167,7 +165,7 @@ body {
     &.mobile {
       padding: 0px;
 
-      &.admin {}
+
     }
 
     &.admin {
@@ -203,10 +201,7 @@ body {
   border: 0.5px solid rgb(210, 129, 37);
   margin-left: 0;
 
-  &.micromobile {
 
-    &.admin {}
-  }
 
   &.mobile {
 
@@ -513,7 +508,7 @@ FORMS #update-card {
 
     margin: 3rem auto;
 
-    &.admin {}
+
   }
 
   &.mobile {
@@ -626,7 +621,6 @@ FORMS #update-card {
       margin-top: 72px;
     }
 
-    &.micromobile {}
 
     &.mobile {
       margin: 20px auto;
@@ -967,7 +961,7 @@ FORMS #update-card {
       display: flex;
       justify-content: center;
 
-      &.admin {}
+
     }
 
     &.admin {
@@ -1064,11 +1058,6 @@ FORMS #update-card {
     height: fit-content;
     align-items: start;
     padding: 15px;
-  }
-
-  &.micromobile {
-
-    &.admin {}
   }
 
   &.mobile {

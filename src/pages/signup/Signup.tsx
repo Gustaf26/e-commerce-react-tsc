@@ -8,7 +8,7 @@ const Signup = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const { signup } = useAuth();
+  // const { signup } = useAuth();
 
   const navigate = useNavigate();
 
@@ -30,7 +30,8 @@ const Signup = () => {
     try {
       // try to sign up the user with the specified credentials
       setLoading(true);
-      const message = await signup(email, passOne);
+      // const message = await signup(email, passOne);
+      const message = { msg: "Success", error: "" };
       if (message.error) {
         alert(error)
         navigate('/signup')

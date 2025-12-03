@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { CSSProperties, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useLocation } from "react-router";
 
@@ -35,7 +35,7 @@ const Home = () => {
   const navigate = useNavigate();
   const { admin } = useAuth();
 
-  const toggleMobileDisplays = (e: Event) => {
+  const toggleMobileDisplays = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
 
     const { id } = (e.target as HTMLElement)
 
@@ -66,10 +66,10 @@ const Home = () => {
               ? (e) => {
                 if ((e.target as HTMLElement).id === "home-card-text") setMenuShowing(false);
               }
-              : null
+              : undefined
           }
           className={microMobile ? 'micromobile' : admin && mobile ? 'admin mobile' : admin ? 'admin' : mobile ? 'mobile' : ''}
-          style={mobile && admin && !microMobile ? { ...containerStyles } : {}}
+          style={mobile && admin && !microMobile ? { ...containerStyles } as CSSProperties : {}}
           lg={mobile ? 12 : 6}
         >
           {admin && <Navigation />}

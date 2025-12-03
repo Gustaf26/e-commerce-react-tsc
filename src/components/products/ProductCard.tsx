@@ -61,13 +61,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ setLoading, item, index }) =>
     }, [location, productOption, lastImgIndex])
 
 
-    const handleImgResize = (e) => {
+    const handleImgResize = (e: React.ChangeEvent<HTMLInputElement>) => {
 
-        if (e.target.value > 0) {
-            document.getElementById('update-product-image').style.transform = `scale(${((1 + (Number(e.target.value) / 100)).toFixed(1)).toString()})`
+        if ((Number(e.target.value) as number) > 0) {
+            (document.getElementById('update-product-image') as HTMLImageElement).style.transform = `scale(${((1 + (Number(e.target.value) / 100)).toFixed(1)).toString()})`
         }
         else {
-            document.getElementById('update-product-image').style.transform = `scale(${(1).toFixed(1).toString()})`
+            (document.getElementById('update-product-image') as HTMLImageElement).style.transform = `scale(${(1).toFixed(1).toString()})`; (document.getElementById('update-product-image') as HTMLImageElement).style.transform = `scale(${(1).toFixed(1).toString()})`
         }
     }
 
@@ -137,7 +137,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ setLoading, item, index }) =>
         <Card.Body
             onClick={(e) => {
                 if ((e.target as HTMLElement).id === 'updateProduct') { setSingleProduct(item); navigate(`/cms/products/update/`, { replace: true }) }
-                else if ((e.target as HTMLElement).parentElement.id !== 'product-card-footer' && (e.target as HTMLElement).id !== 'product-card-footer-container') {
+                else if (((e.target as HTMLElement).parentElement as HTMLElement).id !== 'product-card-footer' && (e.target as HTMLElement).id !== 'product-card-footer-container') {
                     setSingleProduct(item);
                     navigate(admin ? `/cms/products/${item.category}/${item.id}` : `/products/${item.category}/${item.id}`, { replace: true })
                 }
@@ -198,7 +198,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ setLoading, item, index }) =>
                         e.stopPropagation(); if (!activeSize) { setSizeAlert(true) } else { updateCart(item, 'plus', activeSize) }
                     }}>{item.qty === 0 ? 'Add To Cart' : `${item.qty} in Cart`}</button>
 
-                    {item.qty > 0 ? <button className="remove-from-cart-button" type="button" onClick={(e) => { e.stopPropagation(); updateCart(item, 'minus', activeSize) }}>Remove</button> : null}
+                    {item.qty && item.qty > 0 ? <button className="remove-from-cart-button" type="button" onClick={(e) => { e.stopPropagation(); updateCart(item, 'minus', activeSize) }}>Remove</button> : null}
                 </div>
             </CardFooter>}
         </Card.Body >

@@ -12,7 +12,7 @@ import useMobileStyles from '../../hooks/useMobileStyles';
 interface HomeSectionsProps {
     onLoad?: (e: Event) => void;
     onClick: (e: Event) => void;
-    // other props...
+    style: React.CSSProperties
 }
 
 type refComponent = HTMLDivElement | null
@@ -146,7 +146,7 @@ const HomeSections: React.FC<HomeSectionsProps> = () => {
             className={microMobile ? 'micromobile' : admin && mobile ? 'admin mobile' : admin ? 'admin' : mobile ? 'mobile' : ''}>
             <img alt="home-welcome-picture"
                 className='p-0'
-                variant='top'
+                // variant='top'
                 src='https://cdn.pixabay.com/photo/2017/09/17/19/43/woman-2759503__340.jpg'
             />
             <div id='home-card1-text'
