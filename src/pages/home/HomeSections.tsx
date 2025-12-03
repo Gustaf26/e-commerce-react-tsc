@@ -1,13 +1,15 @@
 import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router'
 
-import verkstadImg from '../../assets/images/verkstad.jpg'
+// import verkstadImg from '../../assets/images/verkstad.jpg'
 
 import { useCreate } from "../../contexts/useCreate"
 import { useMobile } from '../../contexts/useMobileContext';
 import { useAuth } from '../../contexts/useAuth';
 
 import useMobileStyles from '../../hooks/useMobileStyles';
+
+import { type Product } from '../../contexts/useCreate' //Product 
 
 interface HomeSectionsProps {
     onLoad?: (e: Event) => void;
@@ -21,7 +23,7 @@ const HomeSections: React.FC<HomeSectionsProps> = () => {
 
     const { allProducts, setSingleProduct, setSearchResults, setSearchString } = useCreate()
 
-    const [slides, setSlides] = useState([])
+    const [slides, setSlides] = useState<HTMLImageElement[]>([])
 
     const slidesref: React.RefObject<refComponent> = useRef(null)
 
@@ -67,7 +69,7 @@ const HomeSections: React.FC<HomeSectionsProps> = () => {
         }, 500)
     }
 
-    const goToSingleProduct = (prod) => {
+    const goToSingleProduct = (prod: Product) => {
 
         setSingleProduct(prod);
         navigate(admin ? `/cms/products/${prod.category}/${prod.id}` : `/products/${prod.category}/${prod.id}`, { replace: true })
@@ -84,7 +86,7 @@ const HomeSections: React.FC<HomeSectionsProps> = () => {
 
             if (i <= maxSlides) {
 
-                return await new Promise((resolve, reject) => {
+                return await new Promise<HTMLImageElement>((resolve, reject) => {
 
                     const imageEl = document.createElement('img')
                     imageEl.style.padding = '0 20px 0 auto'
@@ -107,8 +109,8 @@ const HomeSections: React.FC<HomeSectionsProps> = () => {
                 })
             }
             else {
-                const dummyDiv = document.createElement('div')
-                return await new Promise((resolve, reject) => { resolve(dummyDiv) })
+                const dummyDiv = document.createElement('img')
+                return await new Promise<HTMLImageElement>((resolve, reject) => { resolve(dummyDiv) })
             }
         })
     }
@@ -121,8 +123,8 @@ const HomeSections: React.FC<HomeSectionsProps> = () => {
 
             const allFulfilledPromises = Promise.all(imagesPromises)
 
-            if (slides.length > 0) slidesref.current.innerHTML = ""
-            allFulfilledPromises.then(res => {
+            if (slides && slides.length > 0 && slidesref.current) slidesref.current.innerHTML = ""
+            allFulfilledPromises.then((res: HTMLImageElement[]) => {
                 res.forEach((slide: HTMLImageElement) => {
                     if (!slides.includes(slide)) {
                         setSlides((prev) => [...prev, slide]); slidesref.current?.append(slide)
@@ -183,7 +185,7 @@ const HomeSections: React.FC<HomeSectionsProps> = () => {
                             return (<div key={'placeholder' + num} id="home-slider-placeholder-container"
                             //  style={{ display: 'inline flex', flexWrap: 'nowrap', width: 'fit-content' }}
                             >
-                                <img alt="blurry placeholder" src={verkstadImg} />
+                                {/* <img alt="blurry placeholder" src={verkstadImg} /> */}
                             </div>)
                         }) : null}
                     </div>

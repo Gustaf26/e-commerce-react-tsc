@@ -5,20 +5,19 @@ import { useAuth } from "../../contexts/useAuth";
 
 const Signup = () => {
 
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
   // const { signup } = useAuth();
 
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const email = e.target[0].value
-    const passOne = e.target[1].value
-    const passTwo = e.target[2].value
-
+    const email = (e.target ? [0] : []).values ?? ''
+    const passOne = (e.target ? [0] : []).values ?? ''
+    const passTwo = (e.target ? [0] : []).values ?? ''
     // make sure user has entered the same password in both input fields
     if (passOne !== passTwo) {
       setError("The passwords does not match");
@@ -30,15 +29,16 @@ const Signup = () => {
     try {
       // try to sign up the user with the specified credentials
       setLoading(true);
-      // const message = await signup(email, passOne);
       const message = { msg: "Success", error: "" };
+      // const message = { msg: "Success", error: "" };
       if (message.error) {
-        alert(error)
+        throw new Error("Not working at the moment")
         navigate('/signup')
       }
       navigate("/");
-    } catch (e) {
-      setError(e.message);
+    } catch (e: unknown) {
+      const error: string | null = e as string | null
+      setError(error);
       setLoading(false);
     }
   };

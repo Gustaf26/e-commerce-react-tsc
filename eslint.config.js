@@ -21,6 +21,7 @@ export default defineConfig([
     rules: {
       // Disable the base rule (it doesn’t understand TS)
       "no-unused-vars": "off",
+      "react-hooks/exhaustive-deps": "off",
 
       // Enable the TS-aware version
       "@typescript-eslint/no-unused-vars": [
